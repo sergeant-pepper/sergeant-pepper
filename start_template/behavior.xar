@@ -212,7 +212,9 @@ class MyClass(GeneratedClass):
         '''
         if personName == 'David':
             self.memory.raiseEvent("SAD_PERSON", personName)
-            self.tts.say("You look unhappy " + personName + ", let me cheer you up!")
+            self.tts.say("You look unhappy " + personName + ".")
+            time.sleep(2)
+            self.tts.say("Let me cheer you up!")
             self.dabDance()
         elif personName == 'Markus':
             self.memory.raiseEvent("CALENDAR_REMINDER", personName)
