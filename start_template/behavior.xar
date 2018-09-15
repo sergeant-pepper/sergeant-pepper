@@ -156,7 +156,7 @@ class MyClass(GeneratedClass):
 
     def onLoad(self):
         self.memory = ALProxy("ALMemory")
-        self.tts = ALProxy("ALTextToSpeech")
+        self.tts = ALProxy("ALAnimatedSpeech")
         self.motion = ALProxy("ALMotion")
         self.awareness = ALProxy("ALBasicAwareness")
         self.autonomousMoves = ALProxy("ALAutonomousMoves")
