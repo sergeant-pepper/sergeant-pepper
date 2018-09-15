@@ -13,7 +13,7 @@ include: lexicon_enu.top
 #concept:(touch_react) " ~joyful ^start(template-app/animations/little_laugh) ~touch_answer ^wait(template-app/animations/little_laugh)"
 
 # Defines what happens when the head is being touched.
-concept:(touch_head) " ^runSound(Aldebaran/enu_ono_laugh_badjoke) ^rand["Init standard workflow"] "
+concept:(touch_head) " ^runSound(Aldebaran/enu_ono_sneeze_01) ^rand["Oh, I'm sorry. Hello there!"] "
 
 
 
