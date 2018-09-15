@@ -19,7 +19,7 @@
     <sentence lang="en_US">Sergeant Pepper reporting</sentence>
    </loadingResponses>
    <autonomous>
-    <condition purpose="launchTrigger"><![CDATA[bang('FrontTactilTouched') && bang('MiddleTactilTouched') && bang('RearTactilTouched')]]></condition>
+    <condition purpose="launchTrigger"><![CDATA[bang('FrontTactilTouched')]]></condition>
    </autonomous>
    <permissions>
     <canRunOnPod/>
@@ -31,6 +31,9 @@
   </behaviorContent>
   <behaviorContent path="DabDance">
    <nature>interactive</nature>
+   <triggerSentences/>
+   <loadingResponses/>
+   <autonomous/>
    <permissions/>
   </behaviorContent>
  </contents>

@@ -184,6 +184,10 @@ class MyClass(GeneratedClass):
 
 
     def onInput_onStart(self, personName):
+        if not self.awareness.isEnabled():
+            # Only dance if I'm not dancing yet.
+            return
+
         #self.memory.raiseEvent(self.getParameter("key"), p)
         self.memory.raiseEvent("FACE_RECOGNIZED", personName)
 
