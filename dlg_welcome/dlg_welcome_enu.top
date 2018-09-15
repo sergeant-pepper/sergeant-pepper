@@ -14,7 +14,9 @@ include: lexicon_enu.top
 
 # Defines what happens when the head is being touched.
 concept:(touch_head) " ^runSound(Aldebaran/enu_ono_sneeze_01) ^rand["Oh, I'm sorry. Hello there!"] "
-
+concept:(pepper) [Pepper Peppa Robot]
+concept:(buddy) ^rand["buddy" "my friend"]
+concept:(byebye) "["bye, bye" "see you"]"
 
 
 ########################
@@ -22,7 +24,7 @@ concept:(touch_head) " ^runSound(Aldebaran/enu_ono_sneeze_01) ^rand["Oh, I'm sor
 ########################
 
 # Example:
-#u:(_~byebye ~pepper) $1 ~buddy $onStopped=1
+u:(_~byebye ~pepper) $1 ~buddy $onStopped=1
 
 # On start event.
 u:(e:onStart) ~touch_head
