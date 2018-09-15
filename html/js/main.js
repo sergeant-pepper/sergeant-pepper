@@ -20,6 +20,14 @@ var application = function(){
         bg_duration = data[1];
         $("body").animate({ "background-color": bg_color1 }, bg_duration, bg_animation);
     }
+
+    function changeText1(data) {
+        $('#touch_me').html('Face recognized: [' + data + ']');
+    }
+
+    function changeText2(data) {
+        $('#touch_me').html('Face detected: [' + data + ']');
+    }
 	
 	/*QiSession Events*/
 	 
@@ -32,6 +40,8 @@ var application = function(){
             log("Unable to get the service ALMemory : " + error);
         });
         RobotUtils.subscribeToALMemoryEvent("template/changeBGColor", changeBGColor);
+        RobotUtils.subscribeToALMemoryEvent("FACE_RECOGNIZED", changeText1);
+        RobotUtils.subscribeToALMemoryEvent("FACE_DETECTED", changeText2);
     };
 	
     var onError = function(){
