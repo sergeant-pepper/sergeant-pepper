@@ -191,8 +191,8 @@ class MyClass(GeneratedClass):
         #self.memory.raiseEvent(self.getParameter("key"), p)
         self.memory.raiseEvent("FACE_RECOGNIZED", personName)
 
-        actions = ['appointment', 'unhappy']
-        #actions = ['unhappy', 'unhappy']
+        '''
+        actions = ['appointment', 'appointment', 'unhappy']
         next_action = random.choice(actions)
 
         if next_action == 'appointment':
@@ -205,6 +205,14 @@ class MyClass(GeneratedClass):
         elif next_action == 'unhappy':
             self.tts.say("you look unhappy " + personName + ", let me cheer you up!")
             self.dabDance()
+        '''
+        if personName == 'David':
+            self.tts.say("You look unhappy " + personName + ", let me cheer you up!")
+            self.dabDance()
+        elif personName == 'Markus':
+            self.tts.say("You have your swimming training tomorrow at 8 a.m.")
+        elif personName == 'Peter':
+            self.tts.say("Have fun flying your drones later!")
 
         self.onStopped(p)
 
