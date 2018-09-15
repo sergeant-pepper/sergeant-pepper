@@ -4,6 +4,7 @@
     <BehaviorDescriptions>
         <BehaviorDescription name="behavior" src="start_template" xar="behavior.xar" />
         <BehaviorDescription name="behavior" src="animations/little_laugh" xar="behavior.xar" />
+        <BehaviorDescription name="behavior" src="DabDance" xar="behavior.xar" />
     </BehaviorDescriptions>
     <Dialogs>
         <Dialog name="dlg_welcome" src="dlg_welcome/dlg_welcome.dlg" />
