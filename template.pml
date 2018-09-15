@@ -917,6 +917,9 @@
         <File name="init" src="html/js/init.js" />
         <File name="jquery.min" src="html/js/jquery.min.js" />
         <File name="robotutils" src="html/js/robotutils.js" />
+        <File name="Enu_Ono_Laugh_Happy_2_pitch_115" src="sounds/Enu_Ono_Laugh_Happy_2_pitch_115.ogg" />
+        <File name="jquery.color.plus-names-2.1.2.min" src="html/js/jquery.color.plus-names-2.1.2.min.js" />
+        <File name="jquery.easing.1.3" src="html/js/jquery.easing.1.3.js" />
         <File name="init" src="html_src/public/js/init.js" />
         <File name="jquery.min" src="html_src/public/js/jquery.min.js" />
         <File name="robotutils" src="html_src/public/js/robotutils.js" />
