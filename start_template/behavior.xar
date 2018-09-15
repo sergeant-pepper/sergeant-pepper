@@ -189,7 +189,11 @@ class MyClass(GeneratedClass):
             return
 
         #self.memory.raiseEvent(self.getParameter("key"), p)
+        self.tts.say("Hello " + personName + ", I hope you are fine!")
         self.memory.raiseEvent("FACE_RECOGNIZED", personName)
+
+        import time
+        time.sleep(6)
 
         '''
         actions = ['appointment', 'appointment', 'unhappy']
@@ -207,13 +211,17 @@ class MyClass(GeneratedClass):
             self.dabDance()
         '''
         if personName == 'David':
+            self.memory.raiseEvent("SAD_PERSON", personName)
             self.tts.say("You look unhappy " + personName + ", let me cheer you up!")
             self.dabDance()
         elif personName == 'Markus':
+            self.memory.raiseEvent("CALENDAR_REMINDER", personName)
             self.tts.say("You have your swimming training tomorrow at 8 a.m.")
         elif personName == 'Peter':
+            self.memory.raiseEvent("CALENDAR_REMINDER", personName)
             self.tts.say("Have fun flying your drones later!")
 
+        time.sleep(4)
         self.onStopped(p)
 
     def onInput_onStop(self):
