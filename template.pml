@@ -20,6 +20,12 @@
         <File name="reacting_to_events" src="python/reacting_to_events.py" />
         <File name="Enu_Ono_Laugh_Happy_2_pitch_115" src="sounds/Enu_Ono_Laugh_Happy_2_pitch_115.ogg" />
         <File name="NewMove" src="NewMove.pmt" />
+        <File name="David" src="html/img/David.png" />
+        <File name="Markus" src="html/img/Markus.png" />
+        <File name="Peter" src="html/img/Peter.png" />
+        <File name="Markus" src="html/img/calendar/Markus.png" />
+        <File name="Peter" src="html/img/calendar/Peter.png" />
+        <File name="party_parrot" src="html/img/party_parrot.gif" />
     </Resources>
     <Topics>
         <Topic name="dlg_welcome_enu" src="dlg_welcome/dlg_welcome_enu.top" topicName="dlg_welcome" language="en_US" />

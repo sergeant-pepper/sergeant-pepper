@@ -161,13 +161,15 @@ class MyClass(GeneratedClass):
         self.awareness = ALProxy("ALBasicAwareness")
         self.autonomousMoves = ALProxy("ALAutonomousMoves")
         self.behaviorManager = ALProxy("ALBehaviorManager")
+        self.doingAnimation = False
 
     def onUnload(self):
         self.memory = None
 
     def dabDance(self):
-        if self.awareness.isEnabled():
-            # Only dance if I'm not dancing yet.
+        if not self.doingAnimation:
+            # Only continue if we're not doing anything yet.
+            self.doingAnimation = True
 
             try:
                 self.awareness.setEnabled(False)
@@ -182,18 +184,22 @@ class MyClass(GeneratedClass):
                 self.autonomousMoves.setExpressiveListeningEnabled(True)
                 self.awareness.setEnabled(True)
 
+        # Be open for new events
+        self.doingAnimation = False
+
 
     def onInput_onStart(self, personName):
-        if not self.awareness.isEnabled():
-            # Only dance if I'm not dancing yet.
+        if self.doingAnimation:
+            # Only continue if we're not doing anything yet.
             return
 
         #self.memory.raiseEvent(self.getParameter("key"), p)
+        self.doingAnimation = True
         self.tts.say("Hello " + personName + ", I hope you are fine!")
         self.memory.raiseEvent("FACE_RECOGNIZED", personName)
 
         import time
-        time.sleep(6)
+        time.sleep(2)
 
         '''
         actions = ['appointment', 'appointment', 'unhappy']
@@ -215,6 +221,7 @@ class MyClass(GeneratedClass):
             self.tts.say("You look unhappy " + personName + ".")
             time.sleep(2)
             self.tts.say("Let me cheer you up!")
+            time.sleep(2)
             self.dabDance()
         elif personName == 'Markus':
             self.memory.raiseEvent("CALENDAR_REMINDER", personName)
@@ -223,7 +230,9 @@ class MyClass(GeneratedClass):
             self.memory.raiseEvent("CALENDAR_REMINDER", personName)
             self.tts.say("Have fun flying your drones later!")
 
-        time.sleep(4)
+        time.sleep(2)
+
+        self.doingAnimation = False
         self.onStopped(p)
 
     def onInput_onStop(self):
