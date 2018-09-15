@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<package version="0.0.0" uuid="template-app">
+<package uuid="template-app" version="0.0.0">
  <names>
   <name lang="en_US">Template</name>
  </names>
@@ -31,9 +31,6 @@
   </behaviorContent>
   <behaviorContent path="DabDance">
    <nature>interactive</nature>
-   <triggerSentences/>
-   <loadingResponses/>
-   <autonomous/>
    <permissions/>
   </behaviorContent>
  </contents>
