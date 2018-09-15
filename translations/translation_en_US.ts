@@ -19,4 +19,17 @@
             <translation>Hello</translation>
         </message>
     </context>
+    <context>
+        <name>start_template/behavior.xar:/Say (2)</name>
+        <message>
+            <source>Hello</source>
+            <comment>Text</comment>
+            <translation type="vanished">Hello</translation>
+        </message>
+        <message>
+            <source>Face recognition stopped</source>
+            <comment>Text</comment>
+            <translation type="obsolete">Face recognition stopped</translation>
+        </message>
+    </context>
 </TS>
