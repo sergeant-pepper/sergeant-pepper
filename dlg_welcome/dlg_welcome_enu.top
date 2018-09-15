@@ -25,7 +25,7 @@ concept:(touch_head) " ^runSound(Aldebaran/enu_ono_sneeze_01) ^rand["Oh, I'm sor
 #u:(_~byebye ~pepper) $1 ~buddy $onStopped=1
 
 # On start event.
-u:(e:onStart) ~touch_head ^gotoReactivate(TABLET_TOUCH)
+u:(e:onStart) ~touch_head
 
 # Listen for the touch head event.
 u:([e:FrontTactilTouched e:MiddleTactilTouched e:RearTactilTouched]) ~touch_head
