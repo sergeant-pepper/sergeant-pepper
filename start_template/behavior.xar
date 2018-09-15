@@ -192,12 +192,12 @@ class MyClass(GeneratedClass):
         self.memory.raiseEvent("FACE_RECOGNIZED", personName)
 
         actions = ['appointment', 'unhappy']
-        actions = ['unhappy', 'unhappy']
+        #actions = ['unhappy', 'unhappy']
         next_action = random.choice(actions)
 
         if next_action == 'appointment':
             if personName == 'David':
-                self.tts.say("Don't forget your web meetup tonight at 7 p.m.")
+                self.tts.say("Don't forget your doctor appointment today at noon")
             elif personName == 'Markus':
                 self.tts.say("You have your swimming training tomorrow at 8 a.m.")
             elif personName == 'Peter':
