@@ -11,10 +11,7 @@
     </Dialogs>
     <Resources>
         <File name="app" src="html/css/app.css" />
-        <File name="banana_parrot" src="html/img/banana_parrot.gif" />
         <File name="sad_pepe" src="html/img/sad_pepe.png" />
-        <File name="troll" src="html/img/troll.png" />
-        <File name="trolldance" src="html/img/trolldance.gif" />
         <File name="index" src="html/index.html" />
         <File name="app" src="html/js/app.js" />
         <File name="init" src="html/js/init.js" />
