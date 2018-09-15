@@ -26,7 +26,8 @@ html, body {
 
 .responsive-img {
     width: auto;
-    height: 80vh;
+    height: 90%;
+    display: block;
 }
 
 .responsive-emoji {
