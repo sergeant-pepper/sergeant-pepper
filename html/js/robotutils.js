@@ -75,7 +75,7 @@ RobotUtils = (function(self) {
                             servicesCallback.apply(undefined, services);
                         }
                     }, function() {
-                        var reason = "Failed getting a NaoQi Module: " + wantedServices[i]
+                        var reason = "Failed getting a NaoQi Module: " + wantedServices[i];
                         console.log(reason);
                         if (errorCallback) {
                             errorCallback(reason);
