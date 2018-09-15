@@ -162,6 +162,9 @@ class MyClass(GeneratedClass):
         self.autonomousMoves = ALProxy("ALAutonomousMoves")
         self.behaviorManager = ALProxy("ALBehaviorManager")
         self.doingAnimation = False
+        self.davidShown = False
+        self.peterShown = False
+        self.markusShown = False
 
     def onUnload(self):
         self.memory = None
@@ -188,13 +191,23 @@ class MyClass(GeneratedClass):
             # Only continue if we're not doing anything yet.
             return
 
+        if personName == "David" and self.davidShown:
+            return
+
+        if personName == "Peter" and self.peterShown:
+            return
+
+        if personName == "Markus" and self.markusShown:
+            return
+
+
         #self.memory.raiseEvent(self.getParameter("key"), p)
         self.doingAnimation = True
         self.tts.say("Hello " + personName + ", I hope you are fine!")
         self.memory.raiseEvent("FACE_RECOGNIZED", personName)
 
         import time
-        time.sleep(2)
+        time.sleep(1)
 
         '''
         actions = ['appointment', 'appointment', 'unhappy']
@@ -214,17 +227,21 @@ class MyClass(GeneratedClass):
         if personName == 'David':
             self.memory.raiseEvent("SAD_PERSON", personName)
             self.tts.say("You look unhappy " + personName + ".")
-            time.sleep(2)
+            time.sleep(1)
             self.tts.say("Let me cheer you up!")
             self.dabDance()
+            time.sleep(2)
+            self.davidShown = True
         elif personName == 'Markus':
             self.memory.raiseEvent("CALENDAR_REMINDER", personName)
             self.tts.say("You have your swimming training tomorrow at 8 a.m.")
+            self.markusShown = True
         elif personName == 'Peter':
             self.memory.raiseEvent("CALENDAR_REMINDER", personName)
             self.tts.say("Have fun flying your drones later!")
+            self.peterShown = True
 
-        time.sleep(2)
+        time.sleep(1)
 
         self.doingAnimation = False
         self.onStopped(p)
