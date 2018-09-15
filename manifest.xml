@@ -15,7 +15,6 @@
    <triggerSentences>
     <sentence lang="en_US">start the example app</sentence>
    </triggerSentences>
-   <loadingResponses/>
    <autonomous>
     <condition purpose="launchTrigger"><![CDATA[bang('FrontTactilTouched')]]></condition>
    </autonomous>
