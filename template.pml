@@ -10,22 +10,22 @@
         <Dialog name="dlg_welcome" src="dlg_welcome/dlg_welcome.dlg" />
     </Dialogs>
     <Resources>
-        <File name="app" src="html/css/app.css" />
-        <File name="sad_pepe" src="html/img/sad_pepe.png" />
         <File name="index" src="html/index.html" />
-        <File name="app" src="html/js/app.js" />
-        <File name="init" src="html/js/init.js" />
         <File name="jquery.min" src="html/js/jquery.min.js" />
         <File name="robotutils" src="html/js/robotutils.js" />
         <File name="reacting_to_events" src="python/reacting_to_events.py" />
         <File name="Enu_Ono_Laugh_Happy_2_pitch_115" src="sounds/Enu_Ono_Laugh_Happy_2_pitch_115.ogg" />
         <File name="NewMove" src="NewMove.pmt" />
-        <File name="David" src="html/img/David.png" />
-        <File name="Markus" src="html/img/Markus.png" />
-        <File name="Peter" src="html/img/Peter.png" />
         <File name="Markus" src="html/img/calendar/Markus.png" />
         <File name="Peter" src="html/img/calendar/Peter.png" />
-        <File name="party_parrot" src="html/img/party_parrot.gif" />
+        <File name="html5reset-1.6.1" src="html/css/html5reset-1.6.1.css" />
+        <File name="style" src="html/css/style.css" />
+        <File name="party_parrot" src="html/img/emojis/party_parrot.gif" />
+        <File name="sad_pepe" src="html/img/emojis/sad_pepe.png" />
+        <File name="David" src="html/img/person/David.png" />
+        <File name="Markus" src="html/img/person/Markus.png" />
+        <File name="Peter" src="html/img/person/Peter.png" />
+        <File name="script" src="html/js/script.js" />
     </Resources>
     <Topics>
         <Topic name="dlg_welcome_enu" src="dlg_welcome/dlg_welcome_enu.top" topicName="dlg_welcome" language="en_US" />
