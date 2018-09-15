@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const projectRootPath = path.join(__dirname, '..', '/');
+const projectRootPath = path.join(__dirname, '/');
 
 
 module.exports =  {
@@ -27,8 +27,8 @@ module.exports =  {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(['dist'], {
-      root: projectRootPath,
+    new CleanWebpackPlugin(['html'], {
+      root: path.resolve(projectRootPath, '..'),
       verbose: true,
       dry: false
     }),
@@ -38,14 +38,14 @@ module.exports =  {
       template: './index.html'
     }),
     new MiniCssExtractPlugin({
-      filename: 'assets/[name].[hash:10].css',
-      chunkFilename: 'assets/[name].[chunkhash:10].css'
+      filename: 'css/[name].css',
+      chunkFilename: 'css/[name].css'
     })
   ],
   output: {
-    filename: 'assets/[name].[hash:10].js',
-    chunkFilename: 'assets/[name].[chunkhash:10].js',
-    path: path.resolve(projectRootPath, 'dist'),
-    publicPath: '/'
+    filename: 'js/[name].js',
+    chunkFilename: 'js/[name].js',
+    path: path.resolve(projectRootPath, '..', 'html'),
+    publicPath: ''
   }
 };

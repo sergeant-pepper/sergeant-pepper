@@ -1,0 +1,13 @@
+* {
+    -webkit-user-select: none;
+    box-sizing: border-box;
+    font-family: 'Open Sans';
+}
+
+#root {
+    text-align: center;
+    height: 580px;
+    line-height: 580px;
+    font-size: 70px;
+    background-color: chartreuse;
+}
