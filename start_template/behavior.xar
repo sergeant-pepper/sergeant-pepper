@@ -167,26 +167,21 @@ class MyClass(GeneratedClass):
         self.memory = None
 
     def dabDance(self):
-        if not self.doingAnimation:
-            # Only continue if we're not doing anything yet.
-            self.doingAnimation = True
+          # Only continue if we're not doing anything yet.
+          self.doingAnimation = True
 
-            try:
-                self.awareness.setEnabled(False)
-                self.autonomousMoves.setExpressiveListeningEnabled(False)
-                self.behaviorManager.runBehavior(".lastUploadedChoregrapheBehavior/DabDance")
-                self.autonomousMoves.setExpressiveListeningEnabled(True)
-                self.awareness.setEnabled(True)
-            except Exception as e:
-                self.awareness.setEnabled(False)
-                self.autonomousMoves.setExpressiveListeningEnabled(False)
-                self.behaviorManager.runBehavior("template-app/DabDance")
-                self.autonomousMoves.setExpressiveListeningEnabled(True)
-                self.awareness.setEnabled(True)
-
-        # Be open for new events
-        self.doingAnimation = False
-
+          #try:
+          self.awareness.setEnabled(False)
+          self.autonomousMoves.setExpressiveListeningEnabled(False)
+          self.behaviorManager.runBehavior(".lastUploadedChoregrapheBehavior/DabDance")
+          self.autonomousMoves.setExpressiveListeningEnabled(True)
+          self.awareness.setEnabled(True)
+          #except Exception as e:
+          #    self.awareness.setEnabled(False)
+          #    self.autonomousMoves.setExpressiveListeningEnabled(False)
+          #    self.behaviorManager.runBehavior("template-app/DabDance")
+          #    self.autonomousMoves.setExpressiveListeningEnabled(True)
+          #    self.awareness.setEnabled(True)
 
     def onInput_onStart(self, personName):
         if self.doingAnimation:
