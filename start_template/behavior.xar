@@ -158,18 +158,25 @@ class MyClass(GeneratedClass):
         self.memory = ALProxy("ALMemory")
         self.tts = ALProxy("ALTextToSpeech")
         self.motion = ALProxy("ALMotion")
+        self.awareness = ALProxy("ALBasicAwareness")
+        self.autonomousMoves = ALProxy("ALAutonomousMoves")
 
     def onUnload(self):
         self.memory = None
 
     def trollDance(self):
+        self.awareness.setEnabled(False)
+        self.autonomousMoves.setExpressiveListeningEnabled(False)
         self.motion.moveTo(0, 0, 3.1415)
+        self.autonomousMoves.setExpressiveListeningEnabled(True)
+        self.awareness.setEnabled(True)
 
     def onInput_onStart(self, personName):
         #self.memory.raiseEvent(self.getParameter("key"), p)
         self.memory.raiseEvent("FACE_RECOGNIZED", personName)
 
         actions = ['appointment', 'unhappy']
+        actions = ['unhappy', 'unhappy']
         next_action = random.choice(actions)
 
         if next_action == 'appointment':
@@ -181,7 +188,7 @@ class MyClass(GeneratedClass):
                 self.tts.say("Have fun flying your drones later!")
         elif next_action == 'unhappy':
             self.tts.say("you look unhappy " + personName + ", let me cheer you up!")
-            trollDance(self)
+            self.trollDance(self)
 
         self.onStopped(p)
 
@@ -546,4 +553,44 @@ class MyClass(GeneratedClass):
     def onInput_onStop(self):
         if self.getParameter("Trigger timerOutput if cancelled") and self.waiting and self.waiting.isRunning():
             self.timerOutput()
-        self.onUnload()]]></content></script><Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" /><Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Start the Wait box with the configured timeout value." id="2" /><Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Stop the wait and stimulate the output." id="3" /><Output name="timerOutput" type="1" type_size="1" nature="1" inner="0" tooltip="Send a bang once time set in parameters is elapsed, or if the box is stopped and the appropriate parameter is set." id="4" /><Parameter name="Timeout (s)" inherits_from_parent="0" content_type="2" value="3" default_value="1" min="0" max="5000" tooltip="Duration the box waits before stimulating the output." id="5" /><Parameter name="Trigger timerOutput if cancelled" inherits_from_parent="0" content_type="0" value="0" default_value="1" tooltip="If the box is currently waiting and cancelled, output will be stimulated." id="6" /></Box><Link inputowner="1" indexofinput="2" outputowner="0" indexofoutput="2" /><Link inputowner="0" indexofinput="4" outputowner="1" indexofoutput="4" /><Link inputowner="2" indexofinput="2" outputowner="0" indexofoutput="2" /><Link inputowner="10" indexofinput="2" outputowner="0" indexofoutput="2" /><Link inputowner="5" indexofinput="2" outputowner="4" indexofoutput="6" /><Link inputowner="7" indexofinput="2" outputowner="6" indexofoutput="6" /><Link inputowner="8" indexofinput="2" outputowner="9" indexofoutput="3" /><Link inputowner="18" indexofinput="2" outputowner="8" indexofoutput="3" /><Link inputowner="11" indexofinput="2" outputowner="8" indexofoutput="4" /><Link inputowner="4" indexofinput="2" outputowner="0" indexofoutput="2" /><Link inputowner="9" indexofinput="2" outputowner="12" indexofoutput="4" /></Diagram></BehaviorKeyframe></BehaviorLayer></Timeline></Box></ChoregrapheProject>
+        self.onUnload()]]></content></script><Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" /><Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Start the Wait box with the configured timeout value." id="2" /><Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Stop the wait and stimulate the output." id="3" /><Output name="timerOutput" type="1" type_size="1" nature="1" inner="0" tooltip="Send a bang once time set in parameters is elapsed, or if the box is stopped and the appropriate parameter is set." id="4" /><Parameter name="Timeout (s)" inherits_from_parent="0" content_type="2" value="3" default_value="1" min="0" max="5000" tooltip="Duration the box waits before stimulating the output." id="5" /><Parameter name="Trigger timerOutput if cancelled" inherits_from_parent="0" content_type="0" value="0" default_value="1" tooltip="If the box is currently waiting and cancelled, output will be stimulated." id="6" /></Box><Box name="DabDance" id="13" localization="8" tooltip="" x="425" y="27"><bitmap>media/images/box/box-timeLine.png</bitmap><script language="4"><content><![CDATA[]]></content></script><Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" /><Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" /><Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" /><Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" /><Timeline enable="1" fps="25" start_frame="1" end_frame="-1" size="320"><BehaviorLayer name="behavior_layer1"><BehaviorKeyframe name="keyframe26" index="26"><Diagram><Box name="Move Along" id="3" localization="8" tooltip="Move along a trajectory given by an attached .pmt file.&#x0A;&#x0A;V1.0.0&#x0A;" x="215" y="65"><bitmap>media/images/box/movement/walk_forward.png</bitmap><script language="4"><content><![CDATA[class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self)
+        self.motion = ALProxy("ALMotion")
+        self.navigation = ALProxy("ALNavigation")
+        self.awareness = ALProxy("ALBasicAwareness")
+
+    def onLoad(self):
+        pass
+
+    def onUnload(self):
+        self.motion.move(0., 0., 0.)
+
+    def onInput_onStart(self):
+        self.awareness.setEnabled(False)
+        relativePath = self.getParameter("Planar Move Trajectory")
+        if len(relativePath) == 0:
+            self.failure()
+            return
+
+        behaviorPath = self.behaviorAbsolutePath()
+        trajectoryPath = behaviorPath + relativePath
+
+        trajectoryData = str()
+        with open(trajectoryPath, 'r') as trajectoryFile:
+            trajectoryData = trajectoryFile.read()
+        trajectory = eval(trajectoryData)
+
+        if trajectory[0] != "Composed": # dealing with trajectories with radius
+            trajectory = trajectory[0]
+
+        result = self.navigation.moveAlong(trajectory)
+        if (result):
+            self.success()
+        else:
+            self.failure()
+
+        self.awareness.setEnabled(True)
+
+    def onInput_onStop(self):
+        self.onUnload()]]></content></script><Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" /><Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" /><Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" /><Output name="success" type="1" type_size="1" nature="1" inner="0" tooltip="Stimulated if the trajectory was correctly executed." id="4" /><Output name="failure" type="1" type_size="1" nature="1" inner="0" tooltip="Stimulated if the trajectory was stopped to avoid collisions." id="5" /><Parameter name="Planar Move Trajectory" inherits_from_parent="0" content_type="4" value="/../NewMove.pmt" default_value="" tooltip="" id="6" /></Box><Link inputowner="3" indexofinput="2" outputowner="0" indexofoutput="1" /><Link inputowner="0" indexofinput="4" outputowner="3" indexofoutput="4" /></Diagram></BehaviorKeyframe></BehaviorLayer><ActuatorList model="juliette"><ActuatorCurve name="value" actuator="HeadPitch" mute="0" unit="0"><Key frame="23" value="-22.5" /><Key frame="320" value="-22.5" /></ActuatorCurve><ActuatorCurve name="value" actuator="HeadYaw" mute="0" unit="0"><Key frame="23" value="0.439454" /><Key frame="320" value="0.439454" /></ActuatorCurve><ActuatorCurve name="value" actuator="HipPitch" mute="0" unit="0"><Key frame="23" value="4.57031" /><Key frame="320" value="4.57031" /></ActuatorCurve><ActuatorCurve name="value" actuator="HipRoll" mute="0" unit="0"><Key frame="23" value="18.6328" /><Key frame="320" value="18.6328" /></ActuatorCurve><ActuatorCurve name="value" actuator="KneePitch" mute="0" unit="0"><Key frame="23" value="0.351564" /><Key frame="320" value="0.351564" /></ActuatorCurve><ActuatorCurve name="value" actuator="LElbowRoll" mute="0" unit="0"><Key frame="23" value="-85.0781" /><Key frame="320" value="-85.0781" /></ActuatorCurve><ActuatorCurve name="value" actuator="LElbowYaw" mute="0" unit="0"><Key frame="23" value="-40.4297" /><Key frame="320" value="-40.4297" /></ActuatorCurve><ActuatorCurve name="value" actuator="LHand" mute="0" unit="1"><Key frame="23" value="0.488576" /><Key frame="320" value="0.488576" /></ActuatorCurve><ActuatorCurve name="value" actuator="LShoulderPitch" mute="0" unit="0"><Key frame="23" value="18.1055" /><Key frame="320" value="18.1055" /></ActuatorCurve><ActuatorCurve name="value" actuator="LShoulderRoll" mute="0" unit="0"><Key frame="23" value="11.4258" /><Key frame="320" value="11.4258" /></ActuatorCurve><ActuatorCurve name="value" actuator="LWristYaw" mute="0" unit="0"><Key frame="23" value="27.6835" /><Key frame="320" value="27.6835" /></ActuatorCurve><ActuatorCurve name="value" actuator="RElbowRoll" mute="0" unit="0"><Key frame="23" value="19.0723" /><Key frame="320" value="19.0723" /></ActuatorCurve><ActuatorCurve name="value" actuator="RElbowYaw" mute="0" unit="0"><Key frame="23" value="97.7344" /><Key frame="320" value="97.7344" /></ActuatorCurve><ActuatorCurve name="value" actuator="RHand" mute="0" unit="1"><Key frame="23" value="0.511424" /><Key frame="320" value="0.511424" /></ActuatorCurve><ActuatorCurve name="value" actuator="RShoulderPitch" mute="0" unit="0"><Key frame="23" value="4.57031" /><Key frame="320" value="4.57031" /></ActuatorCurve><ActuatorCurve name="value" actuator="RShoulderRoll" mute="0" unit="0"><Key frame="23" value="-65.7422" /><Key frame="320" value="-65.7422" /></ActuatorCurve><ActuatorCurve name="value" actuator="RWristYaw" mute="0" unit="0"><Key frame="23" value="-40.7842" /><Key frame="320" value="-40.7842" /></ActuatorCurve></ActuatorList></Timeline></Box><Link inputowner="1" indexofinput="2" outputowner="0" indexofoutput="2" /><Link inputowner="0" indexofinput="4" outputowner="1" indexofoutput="4" /><Link inputowner="2" indexofinput="2" outputowner="0" indexofoutput="2" /><Link inputowner="10" indexofinput="2" outputowner="0" indexofoutput="2" /><Link inputowner="5" indexofinput="2" outputowner="4" indexofoutput="6" /><Link inputowner="7" indexofinput="2" outputowner="6" indexofoutput="6" /><Link inputowner="8" indexofinput="2" outputowner="9" indexofoutput="3" /><Link inputowner="18" indexofinput="2" outputowner="8" indexofoutput="3" /><Link inputowner="11" indexofinput="2" outputowner="8" indexofoutput="4" /><Link inputowner="4" indexofinput="2" outputowner="0" indexofoutput="2" /><Link inputowner="9" indexofinput="2" outputowner="12" indexofoutput="4" /><Link inputowner="13" indexofinput="2" outputowner="0" indexofoutput="2" /></Diagram></BehaviorKeyframe></BehaviorLayer></Timeline></Box></ChoregrapheProject>
