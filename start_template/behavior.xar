@@ -216,7 +216,6 @@ class MyClass(GeneratedClass):
             self.tts.say("You look unhappy " + personName + ".")
             time.sleep(2)
             self.tts.say("Let me cheer you up!")
-            time.sleep(2)
             self.dabDance()
         elif personName == 'Markus':
             self.memory.raiseEvent("CALENDAR_REMINDER", personName)
