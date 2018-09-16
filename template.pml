@@ -26,6 +26,12 @@
         <File name="Markus" src="html/img/calendar/Markus.png" />
         <File name="Peter" src="html/img/calendar/Peter.png" />
         <File name="party_parrot" src="html/img/party_parrot.gif" />
+        <File name="" src=".gitignore" />
+        <File name="misc" src=".idea/misc.xml" />
+        <File name="modules" src=".idea/modules.xml" />
+        <File name="sergeant-pepper" src=".idea/sergeant-pepper.iml" />
+        <File name="vcs" src=".idea/vcs.xml" />
+        <File name="workspace" src=".idea/workspace.xml" />
     </Resources>
     <Topics>
         <Topic name="dlg_welcome_enu" src="dlg_welcome/dlg_welcome_enu.top" topicName="dlg_welcome" language="en_US" />
