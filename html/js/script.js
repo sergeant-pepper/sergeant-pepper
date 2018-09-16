@@ -1,89 +1,64 @@
 
+var default_element_time = 1000;
+
 var sequences = [
   [{ /* SEQUENCE_IDLE */
-    content: '😀',
-    timer: 1000
+    content: 'img/emojis/grinning_face.png'
   }, {
-    content: '☺️',
-    timer: 1000
+    content: 'img/emojis/smiling_face.png'
   }, {
-    content: '🤔',
-    timer: 1000
+    content: 'img/emojis/thinking_face.png'
   }, {
-    content: '😌',
-    timer: 1000
+    content: 'img/emojis/relieved.png'
   }], [{ /* SEQUENCE_PARTY */
-    content: '🚀',
-    timer: 1000
+    content: 'img/emojis/rocket.png'
   }, {
-    content: '🎉',
-    timer: 1000
+    content: 'img/emojis/party_popper.png'
   }, {
-    content: '🍻',
-    timer: 1000
+    content: 'img/emojis/beers.png'
   }], [{ /* SEQUENCE_NEW_PERSON */
-    content: '👋',
-    timer: 1000
+    content: 'img/emojis/waving.png'
   }, {
-    content: '🤖',
-    timer: 1000
+    content: 'img/emojis/robot.png'
   }, {
-    content: '😊',
-    timer: 1000
+    content: 'img/emojis/smiling_face.png️'
   }], [{ /* SEQUENCE_NEW_PERSON_DAVID */
-    content: '👋',
-    timer: 1000
+    content: 'img/emojis/waving.png'
   }, {
-    content: 'img/person/David.png',
-    timer: 1000
+    content: 'img/person/David.png'
   }], [{ /* SEQUENCE_NEW_PERSON_PETER */
-    content: '👋',
-    timer: 1000
+    content: 'img/emojis/waving.png'
   }, {
-    content: 'img/person/Peter.png',
-    timer: 1000
+    content: 'img/person/Peter.png'
   }], [{ /* SEQUENCE_NEW_PERSON_MARKUS */
-    content: '👋',
-    timer: 1000
+    content: 'img/emojis/waving.png'
   }, {
-    content: 'img/person/Markus.png',
-    timer: 1000
+    content: 'img/person/Markus.png'
   }], [{ /* SEQUENCE_SAD_PERSON */
-    content: '🤔',
-    timer: 1000
+    content: 'img/emojis/thinking.png'
   }, {
-    content: '💡',
-    timer: 1000
+    content: 'img/emojis/bulb.png'
   }, {
     content: 'img/emojis/party_parrot.gif',
     timer: 4000
   }], [{ /* SEQUENCE_APPOINTMENT */
-    content: '📅',
-    timer: 1000
+    content: 'img/emojis/calendar.png'
   }, {
-    content: '☝',
-    timer: 1000
+    content: 'img/emojis/pointing_up.png'
   }], [{ /* SEQUENCE_APPOINTMENT_PETER */
-    content: '📅',
-    timer: 1000
+    content: 'img/emojis/calendar.png'
   }, {
-    content: 'img/calendar/Peter.png',
-    timer: 1000
+    content: 'img/calendar/Peter.png'
   }], [{ /* SEQUENCE_APPOINTMENT_MARKUS */
-    content: '📅',
-    timer: 1000
+    content: 'img/emojis/calendar.png'
   }, {
-    content: 'img/calendar/Markus.png',
-    timer: 1000
+    content: 'img/calendar/Markus.png'
   }], [{ /* SEQUENCE_BYE_BYE */
-    content: '👋',
-    timer: 1000
+    content: 'img/emojis/waving.png'
   }, {
-    content: '😥',
-    timer: 1000
+    content: 'img/emojis/sad.png'
   }, {
-    content: 'img/emojis/sad_pepe.png',
-    timer: 1000
+    content: 'img/emojis/sad_pepe.png'
   }]
 ];
 
@@ -137,10 +112,12 @@ function displayElement(element) {
   }
 
   // Display the next item.
+  var elementTimer = element.timer ? element.timer : default_element_time;
+
   currentHandler = window.setTimeout(function() {
     var currentElement = currentSequenceContent[currentSequenceElementIndex];
     displayElement(currentElement);
-  }, element.timer);
+  }, elementTimer);
 }
 
 function clearHandler() {
