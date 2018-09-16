@@ -82,7 +82,6 @@ var currentSequenceIndex = SEQUENCE_IDLE;
 var currentSequenceContent = sequences[currentSequenceIndex];
 var currentSequenceElementIndex = 0;
 var currentHandler = undefined;
-var application;
 var ALMemory;
 
 
