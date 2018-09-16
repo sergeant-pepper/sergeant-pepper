@@ -1,6 +1,5 @@
 
-var default_element_time = 1000;
-
+// Sequences.
 var sequences = [
   [{ /* SEQUENCE_IDLE */
     content: 'img/emojis/grinning_face.png'
@@ -83,9 +82,11 @@ var currentSequenceContent = sequences[currentSequenceIndex];
 var currentSequenceElementIndex = 0;
 var currentHandler = undefined;
 var ALMemory;
+var default_element_time = 1000;
+var first_idle = true;
 
 
-// Helper functions.
+// Display text or an image.
 function displayElement(element) {
   // Display the current element.
   if (element.content.indexOf('.') === -1) {
@@ -93,13 +94,26 @@ function displayElement(element) {
     $contentWrapper.html('<p>' + element.content + '</p>');
   }
   else {
+    var image = element.content;
+
+    if (first_idle) {
+      // Show sneeze, dirty hack.
+      image = 'img/emojis/sneezing.png';
+    }
+
     // Image.
-    $contentWrapper.html('<img src="' + element.content + '" alt="" title="">');
+    $contentWrapper.html('<img src="' + image + '" alt="" title="">');
   }
 
   // Update sequence variables.
   if (currentSequenceElementIndex + 1 < currentSequenceContent.length) {
-    currentSequenceElementIndex++;
+    if (first_idle) {
+      // It was a sneeze, don't update our index.
+      first_idle = false;
+    }
+    else {
+      currentSequenceElementIndex++;
+    }
   }
   else {
     if (currentSequenceIndex !== SEQUENCE_IDLE) {
@@ -113,21 +127,27 @@ function displayElement(element) {
   // Display the next item.
   var elementTimer = element.timer ? element.timer : default_element_time;
 
+  // Dirt hack: Time override for sneezing.
+  elementTimer = image === 'img/emojis/sneezing.png' ? 2000 : elementTimer;
+
   currentHandler = window.setTimeout(function() {
     var currentElement = currentSequenceContent[currentSequenceElementIndex];
     displayElement(currentElement);
   }, elementTimer);
 }
 
+// Remove the current handler.
 function clearHandler() {
   window.clearTimeout(currentHandler);
 }
 
+// Update the content via handler.
 function fireNewHandler() {
   var element = currentSequenceContent[currentSequenceElementIndex];
   displayElement(element);
 }
 
+// Prepare the sequence variables for a new sequence element.
 function updateHandler(sequenceId) {
   clearHandler();
   currentSequenceIndex = sequenceId;
