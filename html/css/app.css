@@ -16,6 +16,13 @@ html, body {
     position: relative;
 }
 
+#debug {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1000;
+}
+
 .content {
     display: flex;
     flex-direction: column;
