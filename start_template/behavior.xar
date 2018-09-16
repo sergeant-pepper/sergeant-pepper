@@ -191,9 +191,14 @@ class MyClass(GeneratedClass):
         if self.doingAnimation:
             # Only continue if we're not doing anything yet.
             return
-
-        if personName == self.lastShown:
+        if personName == "David" and self.davidShown:
             return
+        if personName == "Markus" and self.markusShown:
+            return
+        if personName == "Peter" and self.peterShown:
+            return
+        #if personName == self.lastShown:
+        #    return
         #if random.randint(0,9) < 9:
          #   self.tts.say("Just kidding")
         #self.memory.raiseEvent(self.getParameter("key"), p)
@@ -227,15 +232,15 @@ class MyClass(GeneratedClass):
             self.tts.say("Let me cheer you up!")
             self.dabDance()
             time.sleep(2)
-            self.lastShown = 'David'
+            self.davidShown = True
         elif personName == 'Markus':
             self.memory.raiseEvent("CALENDAR_REMINDER", personName)
             self.tts.say("You have your swimming training tomorrow at 8 a.m.")
-            self.lastShown = 'Markus'
+            self.markusShown = True
         elif personName == 'Peter':
             self.memory.raiseEvent("CALENDAR_REMINDER", personName)
             self.tts.say("Have fun flying your drones later!")
-            self.lastShown = 'Peter'
+            self.peterShown = True
 
         time.sleep(1)
 
