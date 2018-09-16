@@ -17,6 +17,8 @@ concept:(touch_head) " ^runSound(Aldebaran/enu_ono_sneeze_01) ^rand["Oh, I'm sor
 concept:(pepper) [Pepper Peppa Robot]
 concept:(buddy) ^rand["buddy" "my friend"]
 concept:(byebye) "["bye, bye" "see you"]"
+concept:(accountbal) [account balance]
+concept:(beeranswer) " $BAD_ACCOUNT_BALANCE=1 ^runSound(Aldebaran/enu_ono_laugh_sarcastic_02) ~joyful You are running low on money, maybe you should buy less beer, " 
 
 
 ########################
@@ -25,7 +27,7 @@ concept:(byebye) "["bye, bye" "see you"]"
 
 # Example:
 u:(_~byebye ~pepper) $1 ~buddy $onStopped=1
-
+u:( ~accountbal ) ~beeranswer
 # On start event.
 u:(e:onStart) ~touch_head
 
